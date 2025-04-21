@@ -1,0 +1,44 @@
+<section class="w-full flex justify-center">
+  <div
+    class="w-full max-w-5xl overflow-hidden relative border border-blue-300"
+    #container
+    (mousedown)="onMouseDown($event)"
+    (mousemove)="onMouseMove($event)"
+    (mouseup)="onMouseUp()"
+    (mouseleave)="onMouseLeave()"
+  >
+    <div
+      class="flex transition-transform duration-300"
+      [ngClass]="{
+        'animate-bounce-left': bounceDirection === 'left',
+        'animate-bounce-right': bounceDirection === 'right'
+      }"
+      [style.transform]="'translateX(' + translateX + ')'"
+    >
+      <div
+        *ngFor="let slide of slidesData"
+        #slideItem
+        class="shrink-0 border border-pink-400 p-4"
+        [style.width.px]="slideWidth"
+      >
+        {{ slide.title }}
+      </div>
+    </div>
+
+    <!-- Controls -->
+    <div *ngIf="control">
+      <button
+        (click)="onPrev()"
+        class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white px-2 py-1 border rounded shadow"
+      >
+        ‹
+      </button>
+      <button
+        (click)="onNext()"
+        class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white px-2 py-1 border rounded shadow"
+      >
+        ›
+      </button>
+    </div>
+  </div>
+</section>

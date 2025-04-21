@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes bounce-left {
+  0% {
+    transform: translateX(calc(var(--tx) - 0px));
+  }
+  50% {
+    transform: translateX(calc(var(--tx) - 50px));
+  }
+  100% {
+    transform: translateX(calc(var(--tx) - 0px));
+  }
+}
+
+@keyframes bounce-right {
+  0% {
+    transform: translateX(calc(var(--tx) - 0px));
+  }
+  50% {
+    transform: translateX(calc(var(--tx) + 50px));
+  }
+  100% {
+    transform: translateX(calc(var(--tx) - 0px));
+  }
+}
+
+.animate-bounce-left {
+  animation: bounce-left 0.3s ease;
+}
+
+.animate-bounce-right {
+  animation: bounce-right 0.3s ease;
+}

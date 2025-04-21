@@ -1,0 +1,47 @@
+<section class="w-full flex justify-center">
+  <div
+    #container
+    class="relative w-[600px] overflow-hidden border border-green-500"
+    (mousedown)="onMouseDown($event)"
+    (mousemove)="onMouseMove($event)"
+    (mouseup)="onMouseUp()"
+    (mouseleave)="onMouseUp()"
+  >
+    <div
+      class="flex gap-3 transition-transform duration-300 ease-in-out"
+      [ngClass]="{
+        'animate-bounceLeft': bounceDirection === 'left',
+        'animate-bounceRight': bounceDirection === 'right'
+      }"
+      [style.transform]="'translateX(' + translateX + ')'"
+      [style.width.px]="slidesData.length * slideWidth"
+    >
+      <div
+        *ngFor="let slide of slidesData; let i = index"
+        #slideItem
+        class="border border-green-500 px-5 py-4 whitespace-nowrap cursor-pointer"
+        [style.width.px]="slideWidth + 12"
+      >
+        {{ slide.title }}
+      </div>
+    </div>
+
+    <!-- Controls -->
+    <ng-container *ngIf="control">
+      <button
+        class="absolute top-1/2 -left-0 -translate-y-1/2 bg-black text-white px-3 py-1 rounded z-10"
+        (click)="onPrev()"
+        [disabled]="currentSlide < 0"
+      >
+        ‹
+      </button>
+      <button
+        class="absolute top-1/2 right-0 -translate-y-1/2 bg-black text-white px-3 py-1 rounded z-10"
+        (click)="onNext()"
+        [disabled]=""
+      >
+        ›
+      </button>
+    </ng-container>
+  </div>
+</section>
